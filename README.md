@@ -1,34 +1,89 @@
-# BinarySearchTree
+# BST Visualizer
 
-## Project Overview
+This project is a simple C++ implementation of a Binary Search Tree (BST) that includes functions to insert, search, and visualize the tree structure.
 
-This project is a C++ implementation of a Binary Search Tree (BST). The BST is a fundamental data structure in computer science that allows for efficient insertion, deletion, and searching of elements. This project provides a console-based interface to perform various operations on the BST, making it a valuable tool for learning and practicing tree-based algorithms.
+## Features
 
-## Features and Functionalities
+- **Insert Node**: Add a node with a specific value to the BST.
+- **Search Node**: Find a node in the BST by its value.
+- **Visualize Tree**: Display the structure of the BST in a visual format, showing the tree's hierarchy.
 
-### Insertion
+## Code Overview
 
-- **Insert Node:** Add a new node to the BST. The tree will automatically adjust to maintain its properties.
+### TreeNode Structure
 
-### Deletion
+Each node in the tree is represented by the `TreeNode` structure:
 
-- **Delete Node:** Remove a node from the BST. The deletion algorithm handles cases where the node has zero, one, or two children.
+```cpp
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+```
 
-### Search
+### BST Class
 
-- **Find Node:** Search for a node with a specific value in the BST. The function returns the node if found, otherwise it indicates that the node is not present.
+The `BST` class contains the following public members:
 
-### Traversal
+- **root**: Pointer to the root of the tree.
+- **insert(TreeNode* node, int key)**: Inserts a new node with the given key into the BST.
+- **search(TreeNode* node, int key)**: Searches for a node with the given key.
+- **visualize(TreeNode* node, int space = 0, int height = 10)**: Recursively visualizes the tree structure.
 
-- **Inorder Traversal:** Print the nodes of the BST in inorder sequence (left-root-right), which will display the elements in ascending order.
-- **Preorder Traversal:** Print the nodes in preorder sequence (root-left-right), useful for creating a copy of the tree.
-- **Postorder Traversal:** Print the nodes in postorder sequence (left-right-root), useful for deleting the tree.
+### Example Usage
 
-### Find Minimum and Maximum
+The `main` function demonstrates the use of the BST class:
 
-- **FindMin:** Retrieve the node with the minimum value in the BST.
-- **FindMax:** Retrieve the node with the maximum value in the BST.
+```cpp
+int main() {
+    BST tree;
 
-## Usage
+    tree.root = tree.insert(tree.root, 50);
+    tree.insert(tree.root, 30);
+    tree.insert(tree.root, 20);
+    tree.insert(tree.root, 40);
+    tree.insert(tree.root, 70);
+    tree.insert(tree.root, 60);
+    tree.insert(tree.root, 80);
 
-The project includes a main function that provides a simple console-based interface to interact with the BST. Users can choose from a menu of operations to perform on the tree, including inserting nodes, deleting nodes, searching for nodes, and displaying the tree using different traversal methods.
+    cout << "Visualizing BST:" << endl;
+    tree.visualize(tree.root);
+    cout << endl;
+
+    int searchKey = 40;
+    cout << "Searching for " << searchKey << ": " << (tree.search(tree.root, searchKey) != NULL ? "Found" : "Not Found") << endl;
+
+    return 0;
+}
+```
+
+## How to Run
+
+1. **Compile the code**: Use a C++ compiler to compile the `main.cpp` file.
+   ```bash
+   g++ -o bst_visualizer main.cpp
+   ```
+
+2. **Run the executable**: Execute the compiled file to run the program.
+   ```bash
+   ./bst_visualizer
+   ```
+
+3. **View the output**: The program will display a visual representation of the BST and the result of a search operation.
+
+## Visualization Example
+
+```
+        80
+    70
+        60
+50
+        40
+    30
+        20
+```
+
+In this example, the tree has nodes with values 50, 30, 20, 40, 70, 60, and 80.
+
